@@ -24,7 +24,7 @@ export class Post extends Model {
   @Column({ type: DataType.UUID, defaultValue: DataType.UUIDV4 })
   id: string;
 
-  @Column({ allowNull: false, type: DataType.BOOLEAN, defaultValue: true })
+  @Column({ allowNull: false, type: DataType.BOOLEAN })
   available: boolean;
   
   @Column({ allowNull: true, type: DataType.INTEGER })
