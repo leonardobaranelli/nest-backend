@@ -13,7 +13,10 @@ import {
 import { UpdatePostDto } from './dto/update-post.dto';
 import { PostService } from './post.service';
 import { FilesInterceptor } from '@nestjs/platform-express';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Posts')
+@ApiBearerAuth()
 @Controller('posts')
 export class PostController {
   constructor(private readonly postService: PostService) {}

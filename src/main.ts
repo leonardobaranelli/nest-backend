@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 import { Sequelize } from 'sequelize-typescript';
 import * as cookieParser from 'cookie-parser';
 import * as gitBranch from 'git-branch';
+import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
 async function bootstrap() {
   const currentBranch = await gitBranch();
@@ -27,11 +28,21 @@ async function bootstrap() {
     }),
   );
   app.enableCors({
-    origin: frontUrl,
+    origin: 'http://localhost:3000',/*  frontUrl, */
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204,
   });
+
+  const config = new DocumentBuilder()
+    .setTitle("Real State Nest API")
+    .setDescription("Post or search your dream home")
+    .setVersion("1.0")
+    .addBearerAuth()
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup("docs", app, document);
+
   const sequelize = app.get(Sequelize);
   await sequelize.sync();
   app.use(cookieParser());

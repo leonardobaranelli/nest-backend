@@ -1,7 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { SellService } from './sell.service';
 import { CreateSellDto } from './dto/create-sell.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Sell')
+@ApiBearerAuth()
 @Controller('sell')
 export class SellController {
   constructor(private readonly rentService: SellService) {}

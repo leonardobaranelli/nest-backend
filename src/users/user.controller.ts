@@ -8,7 +8,10 @@ import {
   Delete,
 } from '@nestjs/common';
 import { UserService } from './user.service';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Users')
+@ApiBearerAuth()
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}

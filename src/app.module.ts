@@ -31,10 +31,10 @@ config();
       port: 5432,
       models: [User, Post, Rent, Comment, Score, Favorite, Sell],
       dialectOptions: {
-        ssl: {
-          require: true,
+        ssl: false/* {
+          require: false,
           rejectUnauthorized: false,
-        },
+        }, */
       },
     }),
     PostModule,

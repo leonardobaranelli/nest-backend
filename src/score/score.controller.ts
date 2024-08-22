@@ -10,7 +10,10 @@ import {
 import { ScoreService } from './score.service';
 import { CreateScoreDto } from './dto/create-score.dto';
 import { UpdateScoreDto } from './dto/update-score.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Score')
+@ApiBearerAuth()
 @Controller('score')
 export class ScoreController {
   constructor(private readonly scoreService: ScoreService) {}
